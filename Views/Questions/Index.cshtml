@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Models.EntityModels.Question>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Questions</h1>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <a asp-action="Create"> <button type="button" class="btn btn-primary waves-effect waves-light float-right mb-3" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-lg">+ Add New</button></a>
+                <h4 class="header-title mt-0 mb-3">All Questions</h4>
+                <div class="table-responsive dash-social">
+                    <table id="datatable" class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>
+                                    Question
+                                </th>
+                                <th>
+                                    Options Allowed
+                                </th>
+                                <th>
+                                    Date Created</th>
+                                
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Description)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IsBinary)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateCreated)
+                                    </td>
+                                    
+                                    <td>
+                                        <a asp-action="AddResponseAsync" asp-route-id="@item.Id">AddResponse</a> |
+                                        <a asp-action="Responses" asp-route-id="@item.Id">View Response</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

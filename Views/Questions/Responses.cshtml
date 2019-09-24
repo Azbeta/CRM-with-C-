@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Models.EntityModels.Response>
+
+@{
+    ViewData["Title"] = "Responses";
+}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <a asp-action="AddResponseAsync"> <button type="button" class="btn btn-primary waves-effect waves-light float-right mb-3" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-lg">+ Add New</button></a>
+                    <h4 class="header-title mt-0 mb-3">All Customers</h4>
+                    <div class="table-responsive dash-social">
+                        <table id="datatable" class="table">
+                            <thead class="thead-light">
+                         
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Description)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.IsMetadataRequired)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.IsFillableByClient)
+                                    </th>
+
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.IsEnd)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.IsFillableByClient)
+                                        </td>
+                                        
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        </div>
+</div>
+</div>
+</div>
+</div>

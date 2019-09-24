@@ -1,0 +1,79 @@
+﻿@using Models.EntityModels;
+@{
+    ViewData["Title"] = "AddCustomerExperience";
+}
+@{
+    var data = ViewData["Question"] as Question;
+}
+
+<h1>Answer Questions</h1>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <a asp-action="Create"> <button type="button" class="btn btn-primary waves-effect waves-light float-right mb-3" >+ Add New</button></a>
+                <h4 class="header-title mt-0 mb-3">All Questions</h4>
+                <div class="table-responsive dash-social">
+                    <div class="col-md-9">
+                        <h5> @data.Code-@data.Description</h5>
+
+                        <hr />
+                    </div>
+                    <div class="col-md-9">
+                        <form asp-action="AddCustomerResponses">
+                            <input type="hidden" name="customerId" value="@ViewData["CustomerId"]" />
+                            @foreach (var item in ViewData["Responses"] as List<Response>)
+                            {
+                                <input type="radio" name="responseId" value="@item.Id">@item.Description
+                                <hr />
+                            }
+                            <input type="submit" class="btn-primary" value="Next Question" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="myLargeModalLabel">Add Project MetaData</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group"><label for="LeadName">Name</label> <input type="text" class="form-control" id="LeadName" required=""></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group"><label for="LeadEmail">Email</label> <input type="email" class="form-control" id="LeadEmail" required=""></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group"><label for="PhoneNo">Phone No</label> <input type="text" class="form-control" id="PhoneNo" required=""></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="status-select" class="mr-2">Country</label>
+                                <select class="custom-select" id="status-select">
+                                    <option selected="">Select</option>
+                                    <option value="1">India</option>
+                                    <option value="2">USA</option>
+                                    <option value="3">Japan</option>
+                                    <option value="4">China</option>
+                                    <option value="5">Germany</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-primary">Save</button> <button type="button" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>

@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Models.EntityModels.Customer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>Customers</h1>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <a asp-action="Create" asp-controller="Customers"> <button type="button" class="btn btn-primary waves-effect waves-light float-right mb-3" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-lg">+ Add New</button></a>
+                <h4 class="header-title mt-0 mb-3">All Customers</h4>
+                <div class="table-responsive dash-social">
+                    <table id="datatable" class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone No</th>
+                                <th>Company</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                            <!--end tr-->
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FullName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Phone)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Company)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Status)
+                                    </td>
+
+                                    <td>
+                                        <form asp-action="AddCustomerExperience" asp-controller="Questions">
+                                            <input type="hidden" name="customerId" value="@item.Id" />
+                                            <input type="hidden" name="responseId" value="@item.Id" />
+                                            <input type="hidden" name="isFirst" value="True" />
+                                            <input type="submit" class="btn-primary" value="New Lead" />|
+                                        </form>
+                                        <a asp-action="GetCustomerResponse" class="btn-success" asp-controller="Customers" asp-route-id="@item.Id">View Responses </a>
+
+
+                                    </td>
+                                </tr>
+                            }
+                            <!--end tr-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--end card-body-->
+        </div>
+        <!--end card-->
+    </div>
+    <!--end col-->
+</div>
